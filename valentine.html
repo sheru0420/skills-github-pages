@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Will You Be My Valentine, Bismi?</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      background-color: #ffcccb; /* Light pink background */
+      padding: 50px;
+    }
+    h1 {
+      color: #d63447; /* Romantic red */
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    #yesButton {
+      background-color: #4CAF50; /* Green for Yes */
+      color: white;
+    }
+    #noButton {
+      background-color: #f44336; /* Red for No */
+      color: white;
+    }
+    #gifContainer {
+      display: none; /* Hidden by default */
+      margin-top: 20px;
+    }
+    #gifContainer img {
+      width: 300px; /* Adjust the size of the GIF */
+      height: auto;
+    }
+    #youtubePlayer {
+      display: none; /* Hidden by default */
+      margin-top: 20px;
+    }
+    #riddlePrompt {
+      display: none; /* Hidden by default */
+      margin-top: 20px;
+      font-size: 18px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>Will You Be My Valentine, Bismi?</h1>
+  <button id="yesButton" onclick="yes()">Yes</button>
+  <button id="noButton" onclick="no()">No</button>
+
+  <div id="gifContainer">
+    <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHJzeHFnZ3MxY212OHZoM2hxYmllbnEzM21xdTR3ZDR6ZXY3dTM5aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/4rONkkYKUUDe0/giphy.gif" alt="Hello Kitty Kissing">
+    <p>💙 I'm glad you said yes, bubbly. Your love has me over the moon. 💙</p>
+  </div>
+
+  <!-- YouTube Embed for "Over the Moon" by The Marías -->
+  <div id="youtubePlayer">
+    <!-- The iframe will be added dynamically when "Yes" is clicked -->
+  </div>
+
+  <!-- Riddle Prompt -->
+  <div id="riddlePrompt">
+    <p>Enjoy listening to our song as you figure out this next riddle. The answer will lead you to another clue.</p>
+  </div>
+
+  <script>
+    function yes() {
+      // Show the Hello Kitty GIF
+      const gifContainer = document.getElementById('gifContainer');
+      gifContainer.style.display = 'block';
+
+      // Dynamically load the YouTube video
+      const youtubePlayer = document.getElementById('youtubePlayer');
+      youtubePlayer.innerHTML = `
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/6jiu9TlR11o?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      `;
+      youtubePlayer.style.display = 'block';
+
+      // Show the riddle prompt
+      const riddlePrompt = document.getElementById('riddlePrompt');
+      riddlePrompt.style.display = 'block';
+
+      // Hide all buttons
+      const buttons = document.querySelectorAll('button');
+      buttons.forEach(button => button.style.display = 'none');
+    }
+
+    function no() {
+      // Create a new "Yes" button
+      const newButton = document.createElement('button');
+      newButton.innerText = 'Yes';
+      newButton.id = 'yesButton';
+      newButton.onclick = yes; // Ensure this only triggers the yes() function
+      document.body.appendChild(newButton);
+
+      // Move the "No" button randomly
+      const noButton = document.getElementById('noButton');
+      const x = Math.random() * (window.innerWidth - 100);
+      const y = Math.random() * (window.innerHeight - 50);
+      noButton.style.position = 'absolute';
+      noButton.style.left = `${x}px`;
+      noButton.style.top = `${y}px`;
+    }
+  </script>
+</body>
+</html>
